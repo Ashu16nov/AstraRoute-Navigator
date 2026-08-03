@@ -12,13 +12,13 @@ import hashlib
 # ─────────────────────────────
 # DATABASE
 # ─────────────────────────────
+
 def init_db():
     conn = sqlite3.connect('users.db')
     conn.execute('CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT)')
     conn.commit(); conn.close()
 
 def make_hash(pw): return hashlib.sha256(pw.encode()).hexdigest()
-
 def add_user(u, pw):
     try:
         conn = sqlite3.connect('users.db')
@@ -50,12 +50,14 @@ def db_audit():
 # ─────────────────────────────
 # SETUP
 # ─────────────────────────────
+
 st.set_page_config(page_title="AstraRoute Navigator", page_icon="🚕", layout="wide")
 init_db()
 
 # ─────────────────────────────
 # GRAPH
 # ─────────────────────────────
+
 LOCS = {
     "Vasant Kunj": (28.53, 77.15), "Connaught Place": (28.63, 77.21),
     "India Gate":  (28.61, 77.22), "Hauz Khas":      (28.55, 77.19),
