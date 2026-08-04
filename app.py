@@ -72,11 +72,14 @@ def build_graph():
     G = nx.Graph()
     for n, p in LOCS.items(): G.add_node(n, pos=p)
     random.seed(42)
+    
     for src in LOCS:
         nbrs = sorted([(math.dist(LOCS[src], LOCS[d]), d) for d in LOCS if d != src])
+       
         for _, dst in nbrs[:4]:
             dist = round(math.dist(LOCS[src], LOCS[dst]) * 111, 2)
             G.add_edge(src, dst, dist=dist)
+    
     return G
 
 G = build_graph()
@@ -100,12 +103,14 @@ def render_auth():
         overflow: hidden !important;
         height: 100vh !important;
     }
+    
     .main .block-container {
         padding-top: 8vh !important;
         padding-bottom: 0 !important;
         overflow: hidden !important;
         max-width: 100% !important;
     }
+    
     [data-testid="stHeader"],
     [data-testid="stSidebar"],
     footer { display: none !important; }
